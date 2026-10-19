@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Projeto de DWS: consulta de CEP utilizando Fetch API, JSON e atualização dinâmica do DOM.">
+  <title>Busca de CEP | Projeto DWS</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#inicio" aria-label="Página inicial Busca de CEP">
+      <span class="brand-mark" aria-hidden="true">⌖</span>
+      <span>Busca de CEP</span>
+    </a>
+    <span class="tag">Projeto de DWS</span>
+  </header>
+
+  <main id="inicio" class="page-wrap">
+    <section class="hero" aria-labelledby="titulo-principal">
+      <p class="eyebrow">FETCH API · JSON · DOM</p>
+      <h1 id="titulo-principal">Encontre um endereço<br><span>pelo CEP.</span></h1>
+      <p class="intro">Digite um CEP brasileiro para consultar o endereço. Os dados são buscados em uma API pública e aparecem aqui sem recarregar a página.</p>
+
+      <form id="form-cep" class="search-card" novalidate>
+        <label for="cep">CEP do endereço</label>
+        <div class="input-row">
+          <div class="input-wrap">
+            <span class="input-icon" aria-hidden="true">⌕</span>
+            <input
+              id="cep"
+              name="cep"
+              type="text"
+              inputmode="numeric"
+              autocomplete="postal-code"
+              placeholder="00000-000"
+              maxlength="9"
+              aria-describedby="cep-ajuda"
+              required
+            >
+          </div>
+          <button id="botao-buscar" type="submit">Buscar CEP <span aria-hidden="true">→</span></button>
+        </div>
+        <p id="cep-ajuda" class="helper">Digite os 8 números do CEP, com ou sem hífen.</p>
+        <p id="mensagem" class="message" role="status" aria-live="polite"></p>
+      </form>
+
+      <section id="resultado" class="result-card" aria-labelledby="titulo-resultado" hidden>
+        <div class="result-heading">
+          <div>
+            <p class="eyebrow">RESULTADO DA CONSULTA</p>
+            <h2 id="titulo-resultado">Endereço encontrado</h2>
+          </div>
+          <span class="success-icon" aria-hidden="true">✓</span>
+        </div>
+        <div class="address-grid">
+          <div class="address-item address-wide">
+            <span class="field-label">Logradouro</span>
+            <p id="rua">—</p>
+          </div>
+          <div class="address-item">
+            <span class="field-label">Bairro</span>
+            <p id="bairro">—</p>
+          </div>
+          <div class="address-item">
+            <span class="field-label">Complemento</span>
+            <p id="complemento">—</p>
+          </div>
+          <div class="address-item">
+            <span class="field-label">Cidade</span>
+            <p id="cidade">—</p>
+          </div>
+          <div class="address-item">
+            <span class="field-label">Estado</span>
+            <p id="estado">—</p>
+          </div>
+          <div class="address-item">
+            <span class="field-label">CEP</span>
+            <p id="cep-resultado">—</p>
+          </div>
+          <div class="address-item">
+            <span class="field-label">DDD</span>
+            <p id="ddd">—</p>
+          </div>
+        </div>
+        <p class="source-note">Dados consultados na API pública ViaCEP.</p>
+      </section>
+    </section>
+
+    <section class="test-panel" aria-labelledby="titulo-testes">
+      <div class="test-title">
+        <span class="test-icon" aria-hidden="true">✓</span>
+        <div>
+          <h2 id="titulo-testes">Teste a funcionalidade</h2>
+          <p>Use estes dois exemplos para verificar os cenários exigidos na atividade.</p>
+        </div>
+      </div>
+      <div class="test-examples">
+        <button class="example-button" type="button" data-cep="01001000">
+          <span class="example-status valid"></span>
+          <span><strong>01001-000</strong><small>CEP válido · deve mostrar um endereço</small></span>
+          <span class="example-arrow" aria-hidden="true">↗</span>
+        </button>
+        <button class="example-button" type="button" data-cep="99999999">
+          <span class="example-status invalid"></span>
+          <span><strong>99999-999</strong><small>CEP não encontrado · deve mostrar uma mensagem de erro</small></span>
+          <span class="example-arrow" aria-hidden="true">↗</span>
+        </button>
+      </div>
+    </section>
+
+    <section class="how-it-works" aria-labelledby="titulo-como-funciona">
+      <p class="eyebrow">POR TRÁS DA PÁGINA</p>
+      <h2 id="titulo-como-funciona">Como funciona?</h2>
+      <div class="steps">
+        <article class="step"><span>01</span><h3>Buscar</h3><p>O JavaScript envia o CEP para a ViaCEP usando <code>fetch()</code>.</p></article>
+        <article class="step"><span>02</span><h3>Converter</h3><p>A resposta em JSON é convertida em dados que o JavaScript consegue usar.</p></article>
+        <article class="step"><span>03</span><h3>Atualizar</h3><p>Os campos da página são preenchidos sem precisar recarregar o site.</p></article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <span>Desenvolvimento de Websites · 4º Bimestre</span>
+    <span>HTML · CSS · JavaScript</span>
+  </footer>
+</body>
+</html>
